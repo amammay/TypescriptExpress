@@ -22,7 +22,13 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   logger.add(new winston.transports.Console({
     level: 'info',
-    format: winston.format.json(),
+    format: winston.format.json()
   }));
 }
-export { logger };
+const stream = {
+  write: (message: any) => {
+    logger.info(message.substring(0, message.lastIndexOf('\n')));
+  }
+};
+
+export { logger, stream };

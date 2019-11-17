@@ -10,7 +10,7 @@ import { container } from './ioc/ioc';
 // load all injectable entities.
 // the @provide() annotation will then automatically register them.
 import './ioc/loader';
-import { logger } from './logging';
+import { logger, stream } from './logging';
 
 config();
 
@@ -34,13 +34,12 @@ server.setConfig((app) => {
       extended: true
     })
   );
-  app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
+  app.use(morgan(':method :url :status :res[content-length] - :response-time ms', { stream }));
   app.use(bodyParser.json());
 });
 
 server.setErrorConfig((app) => {
   app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    console.error(err.stack);
     res.status(500).send('Something broke!');
   });
 });

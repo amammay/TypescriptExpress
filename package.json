@@ -8,7 +8,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "node .",
-    "debug": "nodemon --legacy-watch --watch ./dist --inspect=0.0.0.0:5858 --nolazy ./dist/app.js",
     "dev": "npm-run-all clean build lint --parallel watch:build watch:server --print-label",
     "clean": "rimraf dist",
     "watch:build": "tsc --watch",

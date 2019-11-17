@@ -1,1 +1,1 @@
-export * from '../controller/example.controller';
+export * from '../controller/pingController';

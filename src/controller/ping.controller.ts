@@ -33,7 +33,8 @@ export class PingController {
     description: 'Returns back your name!',
     summary: 'Hello World',
     responses: {
-      200: { description: 'Success', type: SwaggerDefinitionConstant.Response.Type.STRING }
+      200: { description: 'Success', type: SwaggerDefinitionConstant.Response.Type.STRING },
+      400: { description: 'Bad Request', type: SwaggerDefinitionConstant.Response.Type.STRING }
     },
     parameters: {
       query: {

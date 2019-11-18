@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "0d47759b-b253-48a9-8d50-adf40bfb8d78",
+		"name": "TypescriptExpress",
+		"description": "Example Collection Runner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test Query Param",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e7c18750-08dc-401c-9014-1ae2cc223f04",
+						"exec": [
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Hello Alex\");",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{serverUrl}}/ping/test?name=Alex",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"ping",
+						"test"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Alex"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Query Param failure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e7c18750-08dc-401c-9014-1ae2cc223f04",
+						"exec": [
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Error validating request query. \\\"name\\\" is not allowed to be empty.\");",
+							"});",
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{serverUrl}}/ping/test?name=",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"ping",
+						"test"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ping Pong",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e7c18750-08dc-401c-9014-1ae2cc223f04",
+						"exec": [
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"pong\");",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{serverUrl}}/ping/",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"ping",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a6358a8f-cb8f-4f3f-9cc8-90f317a4da47",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ef14ae2b-be07-41aa-bab8-798395c4b5a9",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than 200ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

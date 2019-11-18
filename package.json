@@ -1,22 +1,5 @@
 {
-  "name": "express_typescript",
-  "version": "1.0.0",
-  "description": "Template for a node express app written in typescript",
-  "main": "dist/app.js",
-  "scripts": {
-    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
-    "test": "jest --collect-coverage",
-    "test:watch": "jest --watch",
-    "build": "npm-run-all clean lint && tsc --build tsconfig.build.json",
-    "start": "node .",
-    "dev": "npm-run-all clean build lint --parallel watch:build watch:server --print-label",
-    "clean": "rimraf dist",
-    "watch:build": "tsc --watch",
-    "watch:server": "nodemon --inspect './dist/app.js' --watch './dist'"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Alex Mammay",
   "dependencies": {
     "@hapi/joi": "^16.1.7",
     "body-parser": "^1.19.0",
@@ -34,6 +17,7 @@
     "swagger-ui-dist": "^3.24.2",
     "winston": "^3.2.1"
   },
+  "description": "Template for a node express app written in typescript",
   "devDependencies": {
     "@jest-mock/express": "^0.9.0",
     "@types/body-parser": "1.17.0",
@@ -42,6 +26,7 @@
     "@types/jest": "^24.0.23",
     "@types/morgan": "^1.7.36",
     "jest": "^24.9.0",
+    "newman": "^4.5.6",
     "nodemon": "^1.18.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
@@ -51,5 +36,23 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "3.5.2"
-  }
+  },
+  "keywords": [],
+  "license": "ISC",
+  "main": "dist/app.js",
+  "name": "express_typescript",
+  "scripts": {
+    "build": "npm-run-all clean lint && tsc --build tsconfig.build.json",
+    "clean": "rimraf dist",
+    "dev": "npm-run-all clean build lint --parallel watch:build watch:server --print-label",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "newman:local": "sleep 10 && newman run postman/TypescriptExpress.postman_collection.json -e postman/typescript-express-local.postman_environment.json",
+    "start": "node .",
+    "test": "jest --collect-coverage",
+    "test:it": "npm-run-all clean build lint --parallel --race start newman:local --print-label",
+    "test:watch": "jest --watch",
+    "watch:build": "tsc --watch",
+    "watch:server": "nodemon --inspect './dist/app.js' --watch './dist'"
+  },
+  "version": "1.0.0"
 }

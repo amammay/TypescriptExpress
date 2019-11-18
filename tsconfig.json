@@ -11,7 +11,8 @@
     "emitDecoratorMetadata": true,
     "types": [
       "reflect-metadata",
-      "swagger-express-ts"
+      "swagger-express-ts",
+      "jest"
     ],
     "moduleResolution": "node"
   }

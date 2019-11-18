@@ -9,6 +9,6 @@
       true,
       "single"
     ],
-    "no-console": false
+    "no-console": true
   }
 }

@@ -3,14 +3,17 @@ import 'reflect-metadata';
 import * as bodyParser from 'body-parser';
 import express from 'express';
 import {Container, inject} from 'inversify';
-import {autoProvide} from 'inversify-binding-decorators';
+import {autoProvide, makeFluentProvideDecorator} from 'inversify-binding-decorators';
 import {InversifyExpressServer} from 'inversify-express-utils';
 import morgan from 'morgan';
-import '../ioc/loader';
 import {stream} from '../logging';
 import {addSwagger} from './swagger';
 
 const container = new Container();
+const fluentProvider = makeFluentProvideDecorator(container);
+const provide = (identifier: any) => {
+  return fluentProvider(identifier).inTransientScope().done();
+};
 const router = express.Router();
 addSwagger(router);
 const server = new InversifyExpressServer(container, router);
@@ -29,4 +32,4 @@ server.setErrorConfig((app) => {
     res.status(500).send('Something broke!');
   });
 });
-export {server, autoProvide, inject};
+export {server, autoProvide, provide, inject};

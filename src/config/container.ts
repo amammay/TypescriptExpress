@@ -7,16 +7,14 @@ import {autoProvide, makeFluentProvideDecorator} from 'inversify-binding-decorat
 import {InversifyExpressServer} from 'inversify-express-utils';
 import morgan from 'morgan';
 import {stream} from '../logging';
-import {addSwagger} from './swagger';
 
 const container = new Container();
 const fluentProvider = makeFluentProvideDecorator(container);
 const provide = (identifier: any) => {
   return fluentProvider(identifier).inTransientScope().done();
 };
-const router = express.Router();
-addSwagger(router);
-const server = new InversifyExpressServer(container, router);
+
+const server = new InversifyExpressServer(container);
 server.setConfig((app) => {
   app.use(
     bodyParser.urlencoded({

@@ -24,6 +24,11 @@ principles, Winston logging, JOI validation, Unit Test, and Integration test.
 
 ## Getting Started
 
+### With Docker
+1. `docker-compose up -d` to run the unit test and start the server
+1. `docker-compose down` to spin down everything
+
+### With node
 1. Run `npm i` to install the dependencies
 1. Run `npm run dev` to get a local dev server spun up on port 8080, you can verify its up and running by visiting http://localhost:8080/api-docs/swagger/
 1. Run `npm test` to run the unit test and print out the coverage of the project

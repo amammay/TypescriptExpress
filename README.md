@@ -25,7 +25,8 @@ principles, Winston logging, JOI validation, Unit Test, and Integration test.
 ## Getting Started
 
 ### With Docker
-1. `docker-compose up -d` to run the unit test and start the server
+1. `docker-compose up -d` to run the unit test, integration test and start the server
+    - can verify its up and running by visiting http://localhost:8080/api-docs/swagger/
 1. `docker-compose down` to spin down everything
 
 ### With node

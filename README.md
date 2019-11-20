@@ -24,6 +24,7 @@ principles, Winston logging, JOI validation, Unit Test, and Integration test.
 
 ## Getting Started
 
+1. Run `npm i` to install the dependencies
 1. Run `npm run dev` to get a local dev server spun up on port 3000, you can verify its up and running by visiting http://localhost:3000/api-docs/swagger/
 1. Run `npm test` to run the unit test and print out the coverage of the project
     1. Test can be put into watch mode by running `npm run test:watch`

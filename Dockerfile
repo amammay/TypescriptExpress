@@ -5,5 +5,5 @@ COPY ./ ./
 RUN npm install
 RUN npm run ci
 
-EXPOSE 3000
+EXPOSE 8080
 CMD ["node", "."]

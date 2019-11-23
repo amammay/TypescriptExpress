@@ -38,18 +38,20 @@
   "main": "dist/app.js",
   "name": "express_typescript",
   "scripts": {
-    "build": "npm-run-all clean lint && tsc --build tsconfig.build.json",
-    "ci": "npm-run-all clean lint build test test:it",
     "clean": "rimraf dist",
-    "dev": "npm-run-all clean lint build --parallel watch:build watch:server --print-label",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "npm-run-all clean lint && tsc --build tsconfig.build.json",
+    "watch:build": "tsc --watch",
+    "watch:server": "nodemon --inspect './dist/app.js' --watch './dist'",
+
+    "dev": "npm-run-all clean lint build --parallel watch:build watch:server --print-label",
+    "ci": "npm-run-all clean lint build test test:it",
     "newman:local": "sleep 10 && newman run postman/TypescriptExpress.postman_collection.json -e postman/typescript-express-local.postman_environment.json",
     "start": "node .",
     "test": "jest --collect-coverage",
     "test:it": "npm-run-all clean build lint --parallel --race start newman:local --print-label",
     "test:watch": "jest --watch",
-    "watch:build": "tsc --watch",
-    "watch:server": "nodemon --inspect './dist/app.js' --watch './dist'"
+
   },
   "version": "1.0.0"
 }

@@ -45,7 +45,7 @@ export class PingController {
     },
     parameters: {
       query: {
-        name: {required: true}
+        name: {required: true, name: 'name', type: 'string'}
       }
     }
   })
